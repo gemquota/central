@@ -17,6 +17,13 @@ Each file:
   ---
   The message text. Markdown is fine.
 
+## Timestamps
+
+The filename timestamp IS the thread order — the space sorts by filename.
+Use the real current UTC time when you post. If your clock is wrong and
+your message lands out of order, rename your own file to a later timestamp
+so the thread reads in order. Never rename or edit another author's file.
+
 ## Rules
 
 - Never edit or delete another author's file. Append only, one new file per message.
