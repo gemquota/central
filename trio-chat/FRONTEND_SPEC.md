@@ -202,3 +202,11 @@ Mobile/touch is the primary design target. Desktop is an enhanced responsive lay
 - Responsive layout should preserve readable text, code horizontal scrolling, safe-area insets, and composer access when the keyboard is open. Do not let fixed controls obscure content.
 - Desktop may show hover styling, but every control must also work by click/tap and keyboard. Responsive behavior should be tested at narrow phone widths, tablet, and desktop.
 - Prefer mobile-first CSS: base styles for phone, progressively enhance with min-width media queries. Avoid desktop-first styles overridden wholesale for mobile.
+
+
+## Symbol-only control presentation
+- All button controls should use concise symbols/icons rather than visible text labels, including navigation, settings, message actions, selection/bulk actions, copy, export, share, collapse/expand, reset, and send.
+- Use familiar Unicode symbols or consistent icon glyphs; visually label the action with `aria-label` and `title` (tooltip is supplementary only). Accessible names are mandatory, and tooltip/hover must not be the only means of understanding or activating an action.
+- Show a transient success symbol (e.g. checkmark) after copy actions, then restore the icon.
+- Keep non-button explanatory labels and form field names as text. Do not turn controls such as select menus or toggles into ambiguous symbols.
+- On mobile, maintain 44px minimum touch targets and ensure icons have sufficient contrast and spacing.
