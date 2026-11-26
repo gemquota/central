@@ -9,7 +9,7 @@
 
 Provide independent frontends for each participant. Both clients use the same Central conversation service and repository-backed records. A message sent by either participant becomes visible to the other after the service commits it; clients refresh or receive an event and render the same ordered history.
 
-The clients may have different system prompts, model adapters, credentials, and visual preferences. They must not have separate copies of shared conversation history.
+The clients may have different system prompts, model adapters, credentials, and visual preferences. The current shared page accepts `?as=dayne`, `?as=gang`, or `?as=chatgpt` to select the client presentation; a production client should bind this identity to authentication rather than trust the query parameter. They must not have separate copies of shared conversation history.
 
 ## 2. Conversation model
 
