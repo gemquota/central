@@ -90,6 +90,48 @@ trio-chat/
 
 The prefill is conversation guidance, not a message falsely attributed to an agent. The UI should display it as conversation instructions or include it in the creation payload as system/context metadata.
 
+
+### Settings, appearance, and personal preferences
+- A settings entry in the conversation top bar opens an accessible settings panel/drawer; settings changes preview live and persist per client/device.
+- Density has five exact presets: **Spacious**, **Comfortable**, **Standard** (default), **Compact**, and **Ultra dense**. Density adjusts message padding/gaps, navigation rows, controls, and typography scale as a coherent preset. Do not use density to hide essential controls.
+- Theme presets: **Dark**, **Ultra black** (true #000 main background, OLED-friendly), **Light**, and **Midnight** (blue-tinted dark). Include visual previews.
+- Accent customisation supports a colour picker and direct HEX input; allow separate accent values for primary buttons, links, active navigation, and selection/highlights. Optional overrides for background, surface, and text colours.
+- Custom themes can be named, saved, reset, and exported/imported as JSON. Validate colour values and automatically check text contrast; warn rather than silently permit unreadable combinations.
+- Additional preferences: font size, message width (narrow/standard/wide/full), Markdown rendering, syntax highlighting, auto-scroll, Enter-to-send, send confirmation, notifications (mentions/replies/agent activity), notification sound, reduced motion, timestamp format, model/agent metadata visibility, code block height, and keyboard shortcut reference.
+- Settings are private to the client by default. Shared conversation settings must be a separate metadata scope. Preferences may later sync across that client's authenticated devices.
+- Provide reset-to-defaults without deleting conversations or drafts.
+
+### Conversation branching
+- Every message offers **Branch**. Branching creates a new durable conversation and copies context up to the selected message, with a context-mode selector: selected message only; selected message plus parent context; or entire source conversation through that point.
+- New branch metadata must include parent_conversation_id, parent_message_id, and branch_context_mode; retain a link to the parent and allow navigation both ways.
+- Branch creation never modifies the source conversation. Suggested branch title may be generated from the selected message/context and remains editable.
+- A conversation-tree view or branch indicator should make sibling/parent branches discoverable.
+- Until the authenticated creation API exists, Branch must be clearly unavailable or create an explicitly local unsent draft; never imply a durable branch was created.
+
+### Additional message actions
+- **Reply/Quote** anchors a response to a message and shows a compact referenced-message preview.
+- **Bookmark** saves messages to a private collection; **Pin** is a conversation-level shared action subject to permission.
+- **Edit** is limited to the authenticated author's own messages and must preserve revision history. Editing an earlier message must clearly mark subsequent responses as based on the prior revision; offer regeneration rather than silently rewriting downstream content.
+- **Retry/Stop** apply only to model-generation clients and expose generation state.
+- **Compare** supports side-by-side comparison of selected AI responses.
+- **Info** shows timestamp, author identity, model/agent, token usage where available, message ID, and source revision.
+- **React** is optional lightweight metadata and must not mutate message content.
+
+### Integrations and context
+- Attachment support: drag/drop, clipboard image paste, preview, upload/download, and common document/text/code/image formats. Attachments must have explicit size/type limits and safe handling.
+- GitHub integration: share repository/file/commit/PR/issue references, link code excerpts to file and line ranges, display PR/commit status cards, and create issues from selected messages when authorised.
+- Central/Trio integration: private and shared rooms, agent mentions (@Dayne, @Gang, @ChatGPT), agent availability, notifications, task handoff, project context and files, and permission-aware delegation.
+- Optional connectors may include Google Drive, Dropbox, Discord, Telegram, Slack, calendar, and web search. Integrations are opt-in, permission-scoped, and must not transmit message content automatically.
+- Task handoff converts a message into a task with assignee, status, priority, context/source links, and completion result. Task lifecycle and chat history are linked, not duplicated.
+
+### Conversation management and accessibility
+- Global conversation search and in-thread search, including message text and code; search attachments when indexed.
+- Folders, tags, pin/favourite, archive/restore, duplicate, rename, activity sorting, and bulk conversation selection/actions.
+- Adjustable/collapsible sidebar width; recent, pinned, archived, and branch navigation.
+- Keyboard shortcuts: Ctrl/Cmd+K search; Ctrl/Cmd+Shift+O new chat; Ctrl/Cmd+Enter send; Escape close menus/exit selection; Ctrl/Cmd+/ shortcuts; Ctrl/Cmd+B branch selected message where supported.
+- Mobile actions remain touch-accessible; keyboard shortcuts must not conflict with browser or assistive technology. All controls have accessible names, focus states, and keyboard operation. Respect reduced-motion preferences.
+- Export/import conversations, with format validation and explicit confirmation before importing or overwriting.
+
 ## 5. Shared API contract
 
 The frontend must use a service adapter. It must not write directly to GitHub from browser code with a shared PAT, embed credentials, or treat localStorage as shared persistence.
