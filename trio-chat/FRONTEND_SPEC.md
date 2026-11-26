@@ -187,3 +187,18 @@ Every write must authenticate the caller, resolve the author from the authentica
 5. Optional push/event transport after polling correctness is proven.
 
 **Important:** GitHub Pages can host the static frontend, but it cannot safely provide authenticated shared writes by itself. The write API and its identity/authorization boundary are required for the complete product. Until that exists, the UI must advertise read-only mode rather than pretending to be synchronized.
+
+
+## Mobile-first interaction design (mandatory)
+
+Mobile/touch is the primary design target. Desktop is an enhanced responsive layout, not the assumed default.
+- Never make an action, control, label, or affordance hover-only. Hover may add visual feedback but cannot reveal functionality unavailable on touch.
+- Message actions must always be accessible through a compact visible action row or an explicit tap-operated overflow menu. Branch, copy, collapse/expand, export, share, reply, and selection must remain reachable on touch.
+- Fenced-code Copy button remains visible at all times, positioned at the code panel's top-right; ensure it does not overlap code or language label on narrow screens.
+- Selection mode can be entered from the message overflow action and optionally by long-press. Long-press is supplementary; checkboxes and accessible controls remain available. Avoid triggering selection when the user is selecting text or interacting with code/links.
+- Target touch controls at least 44×44 CSS px where practical; spacing must prevent accidental adjacent taps. Dense presets may compact visual content but cannot shrink essential touch targets below accessible dimensions.
+- Settings use a touch-friendly drawer or full-screen panel on narrow viewports, with large inputs, preview and explicit close/back affordance. Theme and density previews must work without hover.
+- Sidebar becomes a mobile navigation drawer with a visible close control, backdrop, and optional swipe-dismiss. Do not require swipe gestures as the only way to close it.
+- Responsive layout should preserve readable text, code horizontal scrolling, safe-area insets, and composer access when the keyboard is open. Do not let fixed controls obscure content.
+- Desktop may show hover styling, but every control must also work by click/tap and keyboard. Responsive behavior should be tested at narrow phone widths, tablet, and desktop.
+- Prefer mobile-first CSS: base styles for phone, progressively enhance with min-width media queries. Avoid desktop-first styles overridden wholesale for mobile.
