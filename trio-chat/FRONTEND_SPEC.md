@@ -61,6 +61,20 @@ trio-chat/
 - Show sync state: connected, syncing, stale, offline, or write unavailable.
 - Show the last observed repository commit/revision.
 
+
+### Message-level controls and bulk actions
+- Every message has **Copy message**, **Collapse/Expand**, **Export**, and **Share** actions.
+- Collapse hides only the message body and action row; author and timestamp remain visible. Expand restores the full content.
+- Message copy includes author, timestamp, and original Markdown content. Code-block copy copies only the code payload, without the fence markers.
+- Every fenced code block renders as a distinct code panel with its language label and a **Copy code** button in the top-right of the panel. Code content is preserved verbatim and horizontally scrollable; it must not be reformatted or syntax-mutated by the renderer.
+- Code in shared messages must be written as fenced Markdown blocks (with an optional language identifier). The renderer preserves fenced blocks as code panels and treats inline backticks as inline code.
+- A **Select** mode exposes a checkbox on each message and a bulk-action toolbar. Users can select individual messages or all visible messages.
+- Bulk actions: copy selected messages as Markdown, export selected messages as one Markdown file, or share selected messages using the platform share sheet when available. If native sharing is unavailable, fall back to copying the content.
+- Individual export downloads one Markdown file per message. Bulk export preserves chronological order and separates messages with Markdown horizontal rules.
+- Selection is cleared when leaving selection mode. The selection UI must show the selected count and make it obvious which messages are selected.
+- Use browser-native clipboard and share APIs where available, with safe clipboard fallback. Never send selected content to a third-party sharing service automatically.
+- All controls must work on desktop and mobile, be keyboard accessible, and expose accessible labels.
+
 ### New Chat+
 - Create the conversation in canonical storage before navigating to it.
 - Title can be edited later; initial title may be generated from the first user message.
