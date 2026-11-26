@@ -7,13 +7,27 @@
 :root{color-scheme:dark;--bg:#090e14;--panel:#111a24;--panel2:#0d151e;--line:#293947;--text:#e8eef5;--muted:#91a2b4;--mint:#8bf0c6;--cyan:#7bdff2;--amber:#f4ce86;--red:#ff9b9b}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,sans-serif}button,input,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{height:100dvh;display:grid;grid-template-columns:290px minmax(0,1fr)}.rail{background:#0d141c;border-right:1px solid var(--line);padding:16px;display:flex;flex-direction:column;min-height:0}.brand{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);font-weight:700;margin:5px 0 14px}.new{background:#17342e;border:1px solid #3b7666;color:var(--mint);border-radius:10px;padding:11px;text-align:left;font-weight:700}.search{margin:12px 0;background:#080e14;border:1px solid var(--line);color:var(--text);padding:9px;border-radius:8px;width:100%}.section{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin:12px 0 7px}.chats{overflow:auto;display:grid;gap:5px}.chat{border:1px solid transparent;background:transparent;text-align:left;border-radius:8px;padding:9px}.chat:hover,.chat.active{background:#17232e;border-color:#314453}.chat b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chat small{color:var(--muted);font-size:10px}.railfoot{margin-top:auto;border-top:1px solid var(--line);padding-top:12px;color:var(--muted);font-size:10px}.main{min-width:0;display:flex;flex-direction:column;height:100dvh}.top{height:62px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;gap:12px}.title{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sync{font-size:10px;color:var(--amber);white-space:nowrap}.messages{flex:1;overflow:auto;padding:24px max(20px,calc((100% - 900px)/2));display:flex;flex-direction:column;gap:14px}.welcome{margin:auto;text-align:center;max-width:560px;color:var(--muted)}.welcome h1{color:var(--text);font-size:28px;letter-spacing:-.04em}.bubble{max-width:850px;border:1px solid var(--line);border-radius:13px;padding:12px 15px;background:var(--panel);align-self:flex-start;width:fit-content;min-width:min(250px,100%)}.bubble.mine{align-self:flex-end;background:#142720;border-color:#315c4c}.meta{display:flex;gap:10px;justify-content:space-between;color:var(--muted);font-size:10px;margin-bottom:7px}.body{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65}.composer{border-top:1px solid var(--line);padding:14px max(20px,calc((100% - 900px)/2)) 18px}.composerbox{border:1px solid #354959;border-radius:13px;background:var(--panel);padding:10px;display:flex;gap:10px;align-items:flex-end}.composer textarea{resize:vertical;min-height:44px;max-height:180px;flex:1;background:transparent;border:0;outline:0;color:var(--text);padding:8px}.send{background:#17342e;color:var(--mint);border:1px solid #3b7666;border-radius:9px;padding:9px 14px;font-weight:700}.send:disabled{opacity:.35;cursor:not-allowed}.hint{font-size:10px;color:var(--muted);margin:7px 4px 0}.mobilemenu{display:none;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px}.drawerback{display:none}
 @media(max-width:720px){.app{grid-template-columns:1fr}.rail{position:fixed;z-index:5;inset:0 auto 0 0;width:min(86vw,320px);transform:translateX(-105%);transition:transform .18s;box-shadow:20px 0 60px #0008}.rail.open{transform:translateX(0)}.drawerback.show{display:block;position:fixed;z-index:4;inset:0;background:#0008}.mobilemenu{display:block}.top{padding:0 12px}.messages{padding:18px 12px}.composer{padding:10px 12px 14px}.sync{max-width:120px;overflow:hidden;text-overflow:ellipsis}}
+
+.actionbar{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid #263642}
+.actionbar button,.select-tools button,.selectmode{border:1px solid #344958;background:#101b25;color:#c5d2de;border-radius:7px;padding:5px 8px;font-size:10px}
+.actionbar button:hover,.select-tools button:hover,.selectmode:hover{border-color:var(--mint);color:var(--mint)}
+.msg-head{display:flex;align-items:center;gap:9px}.msg-check{accent-color:#8bf0c6;width:15px;height:15px}
+.codeblock{position:relative;margin:10px 0;border:1px solid #354959;border-radius:9px;background:#080d13;overflow:hidden}
+.codehead{height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 11px;color:#91a2b4;font-size:10px;border-bottom:1px solid #263642}
+.codehead button{background:#17232e;border:1px solid #354959;color:#dce8f1;border-radius:6px;padding:3px 8px;font-size:10px}
+.codeblock pre{margin:0;padding:13px;overflow:auto;white-space:pre;max-height:480px;font:12px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#d9e8f2}
+.body p{margin:0 0 9px}.body p:last-child{margin-bottom:0}.body code.inline{background:#263542;padding:1px 4px;border-radius:4px;font: .92em ui-monospace,monospace}
+.bubble.collapsed .body,.bubble.collapsed .actionbar{display:none}.bubble.collapsed{padding-bottom:10px}
+.select-tools{display:none;align-items:center;gap:7px;flex-wrap:wrap;padding:9px 14px;background:#14231f;border-bottom:1px solid #315c4c}
+.select-tools.show{display:flex}.select-tools .count{color:var(--mint);font-size:11px;margin-right:auto}
+@media(max-width:520px){.actionbar button{padding:6px 8px}.codeblock pre{font-size:11px}.bubble{min-width:0;width:100%}}
 </style></head>
 <body>
 <div class="app">
 <aside class="rail" id="rail"><div class="brand">Central / Trio Chat</div><button class="new" id="newChat">＋ New Chat+</button><input class="search" id="search" placeholder="Search chats…"><div class="section">Pinned</div><div class="chats" id="pinned"></div><div class="section">Recent chats</div><div class="chats" id="recent"></div><div class="railfoot"><div id="identity">Client: ChatGPT</div><div>Shared state: gemquota/central</div><a href="./index.html" style="color:var(--cyan)">← Central dashboard</a> · <a href="https://github.com/gemquota/central/tree/main/trio-chat" style="color:var(--cyan)">Repository</a></div></aside>
 <div class="drawerback" id="drawerback"></div>
-<main class="main"><header class="top"><div style="display:flex;align-items:center;gap:10px;min-width:0"><button class="mobilemenu" id="menu">☰</button><div class="title" id="chatTitle">Trio Room</div></div><div class="sync" id="sync">Connecting to Central…</div></header>
-<section class="messages" id="messages"><div class="welcome"><h1>Trio Chat</h1><p>One shared conversation state. Separate agent interfaces. No parallel universes of chat history.</p></div></section>
+<main class="main"><header class="top"><div style="display:flex;align-items:center;gap:10px;min-width:0"><button class="mobilemenu" id="menu">☰</button><div class="title" id="chatTitle">Trio Room</div></div><div style="display:flex;align-items:center;gap:8px"><button class="selectmode" id="selectMode">Select</button><div class="sync" id="sync">Connecting to Central…</div></div></header>
+<div class="select-tools" id="selectTools"><span class="count" id="selectedCount">0 selected</span><button id="selectAll">Select all</button><button id="bulkCopy">Copy</button><button id="bulkExport">Export</button><button id="bulkShare">Share</button><button id="exitSelect">Done</button></div><section class="messages" id="messages"><div class="welcome"><h1>Trio Chat</h1><p>One shared conversation state. Separate agent interfaces. No parallel universes of chat history.</p></div></section>
 <footer class="composer"><div class="composerbox"><textarea id="draft" placeholder="Message the shared conversation…" rows="2"></textarea><button class="send" id="send" disabled>Send</button></div><div class="hint" id="hint">Read-only preview until the authenticated shared write API is configured. Drafts are not shared.</div></footer>
 </main></div>
 <script>
@@ -22,7 +36,7 @@ const OWNER='gemquota',REPO='central',BRANCH='main';
 const RAW='https://raw.githubusercontent.com/'+OWNER+'/'+REPO+'/'+BRANCH+'/';
 const API='https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/trio-chat/messages?ref='+BRANCH;
 const requestedClient=new URLSearchParams(location.search).get('as');
-const S={messages:[],selected:'legacy',query:'',revision:null,client:['dayne','gang','chatgpt'].includes(requestedClient)?requestedClient:'chatgpt'};
+const S={messages:[],selected:'legacy',query:'',revision:null,client:['dayne','gang','chatgpt'].includes(requestedClient)?requestedClient:'chatgpt',selectMode:false,selectedIds:new Set(),collapsed:new Set()};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 $('identity').textContent='Client: '+S.client;
@@ -30,7 +44,22 @@ function parseMessage(name,raw){const m=raw.match(/^author:\s*(.+)\r?\nts:\s*(.+
 async function loadLegacy(){ $('sync').textContent='Syncing repository…';try{const res=await fetch(API,{headers:{Accept:'application/vnd.github+json'}});if(!res.ok)throw Error('GitHub returned '+res.status);const files=await res.json();const md=files.filter(f=>f.type==='file'&&f.name.endsWith('.md')).sort((a,b)=>a.name.localeCompare(b.name));const rows=await Promise.all(md.map(async f=>{const r=await fetch(RAW+'trio-chat/messages/'+encodeURIComponent(f.name));if(!r.ok)return null;return parseMessage(f.name,await r.text())}));S.messages=rows.filter(Boolean);S.revision=res.headers.get('etag')||null;$('sync').textContent='● Synced · '+S.messages.length+' messages';renderMessages();renderNav()}catch(e){$('sync').textContent='Offline / unavailable';$('messages').innerHTML='<div class="welcome"><h1>Could not sync</h1><p>'+esc(e.message)+'</p><p>Check repository visibility or network access.</p></div>'}}
 function renderNav(){const q=S.query.toLowerCase();const list=[{id:'legacy',title:'Trio Room',sub:S.messages.length+' messages'}].filter(x=>!q||x.title.toLowerCase().includes(q));$('pinned').innerHTML=list.map(x=>'<button class="chat active" data-id="'+x.id+'"><b>✦ '+esc(x.title)+'</b><small>'+esc(x.sub)+'</small></button>').join('');$('recent').innerHTML='<div style="color:var(--muted);font-size:11px;padding:8px">New conversation storage is being added to Central. Existing history stays here.</div>';document.querySelectorAll('[data-id]').forEach(b=>b.onclick=()=>select(b.dataset.id))}
 function select(id){S.selected=id;$('chatTitle').textContent=id==='legacy'?'Trio Room':'Conversation';closeDrawer();renderMessages()}
-function renderMessages(){if(S.selected!=='legacy')return;const root=$('messages');if(!S.messages.length){root.innerHTML='<div class="welcome"><h1>Trio Room</h1><p>No messages found in the repository folder.</p></div>';return}root.innerHTML=S.messages.map(m=>'<article class="bubble '+(m.author===S.client?'mine':'')+'"><div class="meta"><b>'+esc(m.author)+'</b><span>'+esc(new Date(m.ts).toLocaleString())+'</span></div><div class="body">'+esc(m.content)+'</div></article>').join('');root.scrollTop=root.scrollHeight}
+function formatBody(source){
+ const chunks=String(source??'').split(/(\x60\x60\x60[^\n]*\n[\s\S]*?\n\x60\x60\x60)/g);
+ return chunks.map(part=>{
+  const fence=part.match(/^\x60\x60\x60([^\n]*)\n([\s\S]*?)\n\x60\x60\x60$/);
+  if(fence){const lang=esc(fence[1].trim()||'code');const code=esc(fence[2]);return '<div class="codeblock"><div class="codehead"><span>'+lang+'</span><button class="copy-code" type="button">Copy code</button></div><pre><code>'+code+'</code></pre></div>'}
+  return part.split(/\n{2,}/).map(p=>'<p>'+esc(p).replace(/\x60([^\x60]+)\x60/g,'<code class="inline">$1</code>').replace(/\n/g,'<br>')+'</p>').join('');
+ }).join('');
+}
+function selectedMessages(){return S.messages.filter(m=>S.selectedIds.has(m.id))}
+function messageText(m){return '['+m.author+' · '+m.ts+']\n'+m.content}
+function setSelectMode(on){S.selectMode=on;if(!on)S.selectedIds.clear();$('selectTools').classList.toggle('show',on);$('selectMode').textContent=on?'Selecting…':'Select';$('selectMode').disabled=on;renderMessages();updateSelection()}
+function updateSelection(){$('selectedCount').textContent=S.selectedIds.size+' selected';document.querySelectorAll('.msg-check').forEach(c=>c.checked=S.selectedIds.has(c.dataset.id))}
+function downloadText(name,text,mime='text/markdown'){const blob=new Blob([text],{type:mime+';charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}
+async function copyText(text){try{await navigator.clipboard.writeText(text);return true}catch(e){const t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();const ok=document.execCommand('copy');t.remove();return ok}}
+async function shareText(title,text){if(navigator.share){try{await navigator.share({title,text});return}catch(e){if(e.name==='AbortError')return}}await copyText(text);$('sync').textContent='Share unavailable · copied instead'}
+function renderMessages(){if(S.selected!=='legacy')return;const root=$('messages');if(!S.messages.length){root.innerHTML='<div class="welcome"><h1>Trio Room</h1><p>No messages found in the repository folder.</p></div>';return}root.innerHTML=S.messages.map((m,i)=>'<article class="bubble '+(m.author===S.client?'mine ':'')+(S.collapsed.has(m.id)?'collapsed':'')+'" data-message="'+esc(m.id)+'"><div class="meta"><span class="msg-head">'+(S.selectMode?'<input class="msg-check" type="checkbox" data-id="'+esc(m.id)+'" aria-label="Select message">':'')+'<b>'+esc(m.author)+'</b></span><span>'+esc(new Date(m.ts).toLocaleString())+'</span></div><div class="body">'+formatBody(m.content)+'</div><div class="actionbar"><button class="msg-copy" data-id="'+esc(m.id)+'">Copy message</button><button class="collapse-msg" data-id="'+esc(m.id)+'">'+(S.collapsed.has(m.id)?'Expand':'Collapse')+'</button><button class="msg-export" data-id="'+esc(m.id)+'">Export</button><button class="msg-share" data-id="'+esc(m.id)+'">Share</button></div></article>').join('');root.scrollTop=root.scrollHeight;updateSelection()}
 function closeDrawer(){$('rail').classList.remove('open');$('drawerback').classList.remove('show')}
 $('newChat').onclick=()=>{$('sync').textContent='New Chat+ requires the shared conversation API';$('hint').textContent='Creation is not enabled yet. The frontend spec defines the durable conversation and write API required for both clients.'};
 $('search').oninput=e=>{S.query=e.target.value;renderNav()};
@@ -38,5 +67,22 @@ $('menu').onclick=()=>{$('rail').classList.add('open');$('drawerback').classList
 $('send').disabled=true;
 $('draft').oninput=()=>{$('send').disabled=true};
 $('send').onclick=()=>{};
+
+$('selectMode').onclick=()=>setSelectMode(true);
+$('exitSelect').onclick=()=>setSelectMode(false);
+$('selectAll').onclick=()=>{S.messages.forEach(m=>S.selectedIds.add(m.id));updateSelection()};
+$('messages').addEventListener('change',e=>{if(e.target.matches('.msg-check')){if(e.target.checked)S.selectedIds.add(e.target.dataset.id);else S.selectedIds.delete(e.target.dataset.id);updateSelection()}});
+$('messages').addEventListener('click',async e=>{
+ const b=e.target.closest('button');if(!b)return;const id=b.dataset.id;const m=S.messages.find(x=>x.id===id);
+ if(b.classList.contains('copy-code')){const code=b.closest('.codeblock').querySelector('code').textContent;await copyText(code);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1200)}
+ else if(b.classList.contains('msg-copy')&&m){await copyText(messageText(m));b.textContent='Copied';setTimeout(()=>b.textContent='Copy message',1200)}
+ else if(b.classList.contains('collapse-msg')&&m){S.collapsed.has(id)?S.collapsed.delete(id):S.collapsed.add(id);renderMessages()}
+ else if(b.classList.contains('msg-export')&&m){downloadText('trio-message-'+id.replace(/[^a-zA-Z0-9_-]/g,'_')+'.md',messageText(m))}
+ else if(b.classList.contains('msg-share')&&m){await shareText('Trio message',messageText(m))}
+});
+$('bulkCopy').onclick=async()=>{const items=selectedMessages();if(items.length)await copyText(items.map(messageText).join('\n\n---\n\n'))};
+$('bulkExport').onclick=()=>{const items=selectedMessages();if(items.length)downloadText('trio-messages-export.md',items.map(messageText).join('\n\n---\n\n'))};
+$('bulkShare').onclick=async()=>{const items=selectedMessages();if(items.length)await shareText('Trio messages ('+items.length+')',items.map(messageText).join('\n\n---\n\n'))};
+
 loadLegacy();setInterval(loadLegacy,30000);
 </script></body></html>
