@@ -260,3 +260,13 @@ Validation: JavaScript syntax compilation and static feature/invariant checks pa
 
 ### Phase-gate decision
 Phase A is marked complete at code/static-test level. Phase B and Phase C are marked implementation-complete but **not operationally complete** until environment setup and authenticated integration tests pass. No phase is represented as live merely because its scaffolding deploys.
+
+## Final QA and release record
+
+- **Production deployment:** READY, deployment ID dpl_9pHDvS6vxHTY4gc5sdLLePxMicqg, commit cc176d65f356cb544eb17d6a3b8d9ebd98f398dd. Production alias: central-trio-chat.vercel.app.
+- **Live smoke test:** Frontend HTTP 200 (49,580 bytes). API conversations, model gateway and task endpoints returned 401 without credentials, confirming deployed routing and default-deny behavior.
+- **Node regression test:** passed on a fresh shallow clone. Serverless handlers compile; frontend script compiles; required controls/invariants exist; JSON rewrite config parses; unauthenticated boundary cases return 401.
+- **Production API functionality:** not activated. Identity tokens and GitHub write credential are not configured, so authenticated reads/writes cannot yet be tested. Provider key and task worker are also absent.
+- **Browser UX:** no real touch-device interaction or visual screenshot QA performed. The automated checks do not substitute for those.
+
+No secret values are committed. See BACKEND_SETUP.md for the exact server environment variables and activation steps. Phase A's implementation/static QA gate is complete; Phase B and C are implementation-complete but remain operationally blocked pending credentials and live integration tests.
