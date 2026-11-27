@@ -4,7 +4,7 @@ const AUTHOR_TOKENS={dayne:process.env.TRIO_DAYNE_TOKEN,gang:process.env.TRIO_GA
 const MAX_BODY=256*1024;
 const headers={"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"};
 function json(res,status,data){res.status(status).setHeader("Content-Type","application/json; charset=utf-8");res.end(JSON.stringify(data))}
-function auth(req){const token=(req.headers.authorization||"").replace(/^Bearer\\s+/i,"");if(!token)return null;for(const [name,value] of Object.entries(AUTHOR_TOKENS))if(value&&token===value)return name;return null}
+function auth(req){const h=req.headers.authorization||'';const token=h.startsWith('Bearer ')?h.slice(7):'';for(const [name,value] of Object.entries(AUTHOR_TOKENS)){if(value&&token===value)return name}return null}
 async function gh(path,method="GET",body){if(!process.env.CENTRAL_GITHUB_TOKEN)throw Object.assign(Error("Server GitHub credential is not configured"),{status:503});const r=await fetch(BASE+path,{method,headers:{...headers,"Authorization":"Bearer "+process.env.CENTRAL_GITHUB_TOKEN,...(body?{"Content-Type":"application/json"}:{})},body:body?JSON.stringify(body):undefined});if(r.status===404)return null;if(!r.ok){const e=Error("GitHub API "+r.status+": "+(await r.text()).slice(0,300));e.status=r.status;throw e}return r.json()}
 async function readFile(path){const x=await gh(path);if(!x)return null;return JSON.parse(Buffer.from(x.content.replace(/\\n/g,""),"base64").toString("utf8"))}
 async function putFile(path,data,sha){const body={message:"Trio API: "+path.split("/").pop(),content:Buffer.from(JSON.stringify(data,null,2)+"\\n").toString("base64")};if(sha)body.sha=sha;return gh(path,"PUT",body)}
