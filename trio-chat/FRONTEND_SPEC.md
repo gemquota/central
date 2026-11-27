@@ -231,3 +231,32 @@ Validation: JavaScript syntax compilation and static feature/invariant checks pa
 **Status: not yet implemented.** Requires secure provider credentials and runtime configuration, model/provider adapters, streaming/cancellation, task orchestration, agent routing, and execution/error-state tests. Agent delegation may be queued without execution until an authorized worker is connected.
 
 **Completion rule:** a phase is not marked complete merely because UI or API scaffolding exists. It must pass implementation review, refinement, tests, bug fixes, performance checks, and verification of required external configuration. Unavailable external credentials or services are recorded as blockers, not falsely passed.
+
+## Implementation completion report — 2026-11-27
+
+### Phase A — local/mobile-first frontend
+**Complete for implementation and automated/static tests.** Local conversations/drafts, send, local branch context, reply/quote, edit-copy for legacy immutable messages, local bookmarks, local pin/rename/archive/restore/delete, folders/assignment, message search, selection/bulk actions, copy/export/share/collapse, settings, theme/density/accent, connect-all hub, accessible icon controls, touch targets, reduced-motion control, and attachment text import are implemented. Frontend remains static and no dependencies were added.
+
+- Regression script: dashboard/trio-chat-tests.js.
+- Executed on a connected Debian host against a fresh shallow clone: **passed** (JavaScript compilation, control/invariant assertions, backend syntax, JSON config, and unauthenticated API boundary checks).
+- Browser/device tap-through and responsive screenshot QA: **not verified**; no connected navigation-capable browser was available in this session.
+- Limit: Connect-all is an onboarding hub/list, not an OAuth implementation. Local attachments only import small text files into a draft; upload/storage is not implemented.
+
+### Phase B — shared API/persistence
+**Implementation scaffold and frontend adapter complete; live activation blocked by required server credentials.** Added Vercel routing and /api/trio endpoints for conversation list/create/read/update/archive, message list/create/edit revision/soft-delete, branch creation with context snapshots, reactions, per-identity bookmarks, shared folders, and authenticated search. Frontend supports API configuration, token storage on-device, connection test, shared create/select/send/branch, remote management, search, edits, bookmarks and reactions.
+
+- Server-side identities: TRIO_DAYNE_TOKEN, TRIO_GANG_TOKEN, TRIO_CHATGPT_TOKEN.
+- Storage credential: CENTRAL_GITHUB_TOKEN (server-only, Contents read/write).
+- Optional origin allow-list: TRIO_ALLOWED_ORIGINS.
+- API is default-deny; access requires a valid identity and participant membership. Author identity is derived server-side.
+- Remaining live tests: write/read round-trip, concurrent sends/conflicts, branch persistence, cross-client sync, authorization matrix, and GitHub token permissions. The API uses sequential GitHub Contents commits; multi-file transactions and conflict retry are not implemented.
+
+### Phase C — model runtime and delegation
+**Implementation scaffold complete; live model/worker activation blocked by provider credentials and an authorized worker.** Added streaming OpenAI-compatible/Anthropic model gateway, server-only key, per-agent/default model configuration, allowed-model list for compare, frontend generation/stop, retry-to-draft, comparison, message details, delegation tasks persisted in repository, task monitor, and optional worker dispatch/status update.
+
+- Required: TRIO_MODEL_API_KEY; TRIO_MODEL_PROVIDER; optional endpoint and model IDs (TRIO_MODEL_DEFAULT, per identity); comparison allow-list TRIO_MODEL_CHOICES.
+- Optional task worker: TRIO_TASK_WORKER_URL + TRIO_TASK_WORKER_TOKEN.
+- Live streaming, abort, compare, model error handling, and worker dispatch/status tests remain blocked until configuration is present.
+
+### Phase-gate decision
+Phase A is marked complete at code/static-test level. Phase B and Phase C are marked implementation-complete but **not operationally complete** until environment setup and authenticated integration tests pass. No phase is represented as live merely because its scaffolding deploys.
