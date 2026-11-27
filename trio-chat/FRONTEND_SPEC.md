@@ -210,3 +210,24 @@ Mobile/touch is the primary design target. Desktop is an enhanced responsive lay
 - Show a transient success symbol (e.g. checkmark) after copy actions, then restore the icon.
 - Keep non-button explanatory labels and form field names as text. Do not turn controls such as select menus or toggles into ambiguous symbols.
 - On mobile, maintain 44px minimum touch targets and ensure icons have sufficient contrast and spacing.
+
+
+## Implementation status and phase gates (2026-11-27)
+
+### Phase A — local frontend functionality
+
+**Status: implemented, static validation passed; interactive browser/device QA still outstanding.**
+
+Implemented in the static frontend: local conversation creation and sending, device-local persistence, branch context copies, reply/quote draft insertion, edit-as-local-copy for immutable legacy messages, local message bookmarks, local chat rename/pin/archive/restore/delete, folder creation and assignment, message search across loaded legacy/local content, local message copy/export/share/collapse, bulk legacy-message copy/export/share, settings/theme/density, and a Connect Everything hub listing integrations and explaining required authorization. All shared writes and model sends remain disabled/clearly local until Phases B/C are configured.
+
+Validation: JavaScript syntax compilation and static feature/invariant checks passed. No automated real-browser/device interaction run has yet been performed. The integration hub is a UI and connection inventory, not actual OAuth or connector execution.
+
+### Phase B — shared persistence/API
+
+**Status: not yet implemented.** Required before any local draft can become a shared durable conversation. Backend prerequisites include secure per-identity secrets, GitHub repository write credential configured server-side, deployment of serverless API functions, and API integration tests for authorization, validation, retries, concurrency, persistence, and two-client sync.
+
+### Phase C — agent/model runtime
+
+**Status: not yet implemented.** Requires secure provider credentials and runtime configuration, model/provider adapters, streaming/cancellation, task orchestration, agent routing, and execution/error-state tests. Agent delegation may be queued without execution until an authorized worker is connected.
+
+**Completion rule:** a phase is not marked complete merely because UI or API scaffolding exists. It must pass implementation review, refinement, tests, bug fixes, performance checks, and verification of required external configuration. Unavailable external credentials or services are recorded as blockers, not falsely passed.
