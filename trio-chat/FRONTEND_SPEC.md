@@ -270,3 +270,10 @@ Phase A is marked complete at code/static-test level. Phase B and Phase C are ma
 - **Browser UX:** no real touch-device interaction or visual screenshot QA performed. The automated checks do not substitute for those.
 
 No secret values are committed. See BACKEND_SETUP.md for the exact server environment variables and activation steps. Phase A's implementation/static QA gate is complete; Phase B and C are implementation-complete but remain operationally blocked pending credentials and live integration tests.
+
+### Final production redeploy (latest)
+- **READY:** dpl_HeHSkBPG57Rg7jEJee9LXZSU8UM4.
+- **Commit:** 74f52b9f53c340748f421ba3159179f3470aeec3.
+- **Alias:** https://central-trio-chat.vercel.app.
+- **Live smoke:** page 200 (51,424 bytes); shared API 401 without credentials; generation 401 without credentials; task endpoint 401 without credentials. This verifies deployed routing and default-deny auth, not authenticated service functionality.
+- Regression checks were rerun on a fresh shallow clone after the latest frontend commit and passed.
