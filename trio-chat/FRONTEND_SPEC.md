@@ -277,3 +277,11 @@ No secret values are committed. See BACKEND_SETUP.md for the exact server enviro
 - **Alias:** https://central-trio-chat.vercel.app.
 - **Live smoke:** page 200 (51,424 bytes); shared API 401 without credentials; generation 401 without credentials; task endpoint 401 without credentials. This verifies deployed routing and default-deny auth, not authenticated service functionality.
 - Regression checks were rerun on a fresh shallow clone after the latest frontend commit and passed.
+
+## Production hotfix: recursive renderer crash (2026-11-28)
+- User reported `Maximum call stack size exceeded` after deployment.
+- Root cause: JavaScript function declarations are hoisted. Renderer aliases were accidentally bound to the later duplicate wrappers, causing recursive calls.
+- Fix: separate names for `renderLegacyNav`, `renderLegacyMessages`, `renderLocalNav`, and `renderLocalMessages`; wrapper aliases now reference explicit implementations. Removed stray code after the HTML document.
+- Added regression assertions for the alias relationships.
+- Frontend JavaScript syntax rechecked: pass.
+- Production deployment READY: `dpl_64BjMqM6qDFP4N9C6NsPURPjnqSF`, commit `ff3fbc90218fb4208f45cd959e5f1ce6fda2145e`. Termalin host was offline, so Node regression script could not be executed during this hotfix.
